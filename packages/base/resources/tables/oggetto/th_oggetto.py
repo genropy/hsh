@@ -12,8 +12,8 @@ class View(BaseComponent):
         r.fieldcell('quantita')
         r.fieldcell('anno_acquisto')
         r.fieldcell('foto')
-        r.fieldcell('posto_id')
         r.fieldcell('categoria_id')
+        r.fieldcell('posto_id')
         r.fieldcell('casa_id')
 
     def th_order(self):
@@ -33,10 +33,21 @@ class Form(BaseComponent):
         fb.field('quantita' )
         fb.field('anno_acquisto' )
         fb.field('foto' )
-        fb.field('posto_id' )
         fb.field('categoria_id' )
+        fb.field('posto_id' )
         fb.field('casa_id' )
+        fb.dataRpc('^.posto_id', self.postoDefault, categoria_id='^.categoria_id', 
+                        _if='categoria_id', _fired='^run')
 
 
     def th_options(self):
         return dict(dialog_height='400px', dialog_width='600px' )
+
+    @public_method
+    def postoDefault(self, categoria_id=None):
+        posto_id=self.db.table('base.oggetto_categoria').readColumns(
+                                                        columns='$posto_id_def', 
+                                                        where='$id=:c', c=categoria_id)
+        print(posto_id)
+        return posto_id
+        #va affinata ma funziona

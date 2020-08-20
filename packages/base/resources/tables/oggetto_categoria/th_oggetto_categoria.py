@@ -14,6 +14,7 @@ class View(BaseComponent):
         r.fieldcell('df_colswidth')
         r.fieldcell('descrizione')
         r.fieldcell('casa_id')
+        r.fieldcell('posto_id_def')
 
     def th_order(self):
         return 'nome'
@@ -34,6 +35,7 @@ class Form(BaseComponent):
         fb.field('df_colswidth' )
         fb.field('descrizione' )
         fb.field('casa_id' )
+        fb.field('posto_id_def' )
 
 
     def th_options(self):
