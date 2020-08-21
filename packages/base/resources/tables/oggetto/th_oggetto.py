@@ -22,6 +22,37 @@ class View(BaseComponent):
     def th_query(self):
         return dict(column='nome', op='contains', val='')
 
+class ViewFromCategoria(View):
+
+    def th_struct(self,struct):
+        r = struct.view().rows()
+        r.fieldcell('nome')
+        r.fieldcell('quantita')
+        r.fieldcell('anno_acquisto')
+        r.fieldcell('posto_id')
+
+    def th_order(self):
+        return 'nome'
+
+    def th_query(self):
+        return dict(column='nome', op='contains', val='')
+
+class ViewFromPosto(View):
+
+    def th_struct(self,struct):
+        r = struct.view().rows()
+        r.fieldcell('nome')
+        r.fieldcell('quantita')
+        r.fieldcell('anno_acquisto')
+        r.fieldcell('categoria_id')
+
+
+    def th_order(self):
+        return 'nome'
+
+    def th_query(self):
+        return dict(column='nome', op='contains', val='')
+
 
 
 class Form(BaseComponent):
@@ -33,21 +64,14 @@ class Form(BaseComponent):
         fb.field('quantita' )
         fb.field('anno_acquisto' )
         fb.field('foto' )
-        fb.field('categoria_id' )
-        fb.field('posto_id' )
-        fb.field('casa_id' )
-        fb.dataRpc('^.posto_id', self.postoDefault, categoria_id='^.categoria_id', 
-                        _if='categoria_id', _fired='^run')
-
-
-    def th_options(self):
-        return dict(dialog_height='400px', dialog_width='600px' )
+        
 
     @public_method
-    def postoDefault(self, categoria_id=None):
-        posto_id=self.db.table('base.oggetto_categoria').readColumns(
-                                                        columns='$posto_id_def', 
-                                                        where='$id=:c', c=categoria_id)
-        print(posto_id)
-        return posto_id
-        #va affinata ma funziona
+    def th_onLoading(self, record, newrecord, loadingParameters, recInfo):
+        if newrecord:
+            record['casa_id'] = self.rootenv['casa_id']
+            categoria_record = record['@categoria_id']
+            record['posto_id'] = categoria_record['default_posto_id']
+
+    def th_options(self):
+        return dict(dialog_height='400px', dialog_width='600px', duplicate=True)

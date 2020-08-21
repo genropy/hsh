@@ -14,7 +14,7 @@ class View(BaseComponent):
         r.fieldcell('df_colswidth')
         r.fieldcell('descrizione')
         r.fieldcell('casa_id')
-        r.fieldcell('posto_id_def')
+        r.fieldcell('default_posto_id')
 
     def th_order(self):
         return 'nome'
@@ -27,16 +27,15 @@ class View(BaseComponent):
 class Form(BaseComponent):
 
     def th_form(self, form):
-        pane = form.record
-        fb = pane.formbuilder(cols=2, border_spacing='4px')
+        bc = form.center.borderContainer()
+        top = bc.contentPane(region='top', datapath='.record', padding='5px')
+        fb = top.formbuilder(cols=3, border_spacing='4px')
         fb.field('nome' )
-        fb.field('hierarchical_nome' )
-        fb.field('df_fbcolumns' )
-        fb.field('df_colswidth' )
         fb.field('descrizione' )
-        fb.field('casa_id' )
-        fb.field('posto_id_def' )
+        fb.field('default_posto_id' )
+        center = bc.contentPane(region='center')
+        center.dialogTableHandler(relation='@oggetti')
 
 
     def th_options(self):
-        return dict(dialog_height='400px', dialog_width='600px', hierarchical=True)
+        return dict(dialog_height='400px', dialog_width='600px', hierarchical=True, duplicate=True)

@@ -11,5 +11,5 @@ class Table(object):
         tbl.column('descrizione',name_long='Descrizione')
         tbl.column('casa_id',size='22',name_long='Casa').relation('casa.id',
                     relation_name='categorie_casa', mode='foreignkey', onDelete='raise')
-        tbl.column('posto_id_def',size='22', group='_', name_long='Posto Default').relation('posto.id', 
+        tbl.column('default_posto_id',size='22', group='_', name_long='Posto Default').relation('posto.id', 
                     relation_name='categorie_posti_def', mode='foreignkey', onDelete='raise')
