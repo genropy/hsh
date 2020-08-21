@@ -7,5 +7,5 @@ def config(root,application=None):
     base.thpage('Oggetti',table='base.oggetto')
     base.thpage('Oggetti categorie',table='base.oggetto_categoria')
     base.thpage('Posti',table='base.posto')
-    base.lookups('Tipi', lookup_manager="base")
+    base.lookups('Tipi e Tag', lookup_manager="base")
     base.thpage('Case',table='base.casa')

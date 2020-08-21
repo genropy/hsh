@@ -9,7 +9,7 @@ class GnrCustomWebPage(object):
                         title=f'Gestione {casa_record["nome"]}')
         frame.data('.casa_record',casa_record)
         self.gestioneDomesticaTabs(frame.tabContainer(region='center',margin='2px'))
-        footer = frame.bottom.slotToolbar('*,logoutbtn,5')
+        footer = frame.bottom.slotToolbar('*,logoutbtn,5') #logout già predefinito ma così lo personalizziamo
 
         footer.logoutbtn.button(label='Esci',action="genro.logout()",
                         iconClass='iconbox switch_off',

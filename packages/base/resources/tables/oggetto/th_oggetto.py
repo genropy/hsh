@@ -11,7 +11,6 @@ class View(BaseComponent):
         r.fieldcell('nome')
         r.fieldcell('quantita')
         r.fieldcell('anno_acquisto')
-        r.fieldcell('foto')
         r.fieldcell('categoria_id')
         r.fieldcell('posto_id')
         r.fieldcell('casa_id')
@@ -59,12 +58,26 @@ class Form(BaseComponent):
 
     def th_form(self, form):
         pane = form.record
-        fb = pane.formbuilder(cols=2, border_spacing='4px')
+        bc = pane.borderContainer(margin='2px',text_align='center', datapath='#FORM.record')
+
+        cp_left = bc.contentPane(region='left', width='50%', margin='10px')
+        fb = cp_left.formbuilder(cols=1, border_spacing='4px')
         fb.field('nome' )
-        fb.field('quantita' )
         fb.field('anno_acquisto' )
-        fb.field('foto' )
+        fb.field('quantita' )
+        fb.field('posto_id', hasDownArrow=True)
+        fb.checkboxtext(value='^.tag_id', table='base.oggetto_tag', 
+                            columns='$nome', lbl='Tag: ', cols=2)
         
+        cp_right = bc.contentPane(region='center', margin='10px')
+        cp_right.img(src='^.foto', 
+                    crop_height='150px', max_width='150px',
+                    crop_width='150px', max_height='150px',
+                    crop_border='2px dotted silver',
+                    crop_rounded=6, edit=True,
+                    placeholder=True,
+                    upload_filename='=#FORM.record.id',
+                    upload_folder='site:oggetti/foto')
 
     @public_method
     def th_onLoading(self, record, newrecord, loadingParameters, recInfo):

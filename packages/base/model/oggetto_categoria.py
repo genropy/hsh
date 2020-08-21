@@ -6,7 +6,7 @@ class Table(object):
         tbl =  pkg.table('oggetto_categoria',pkey='id',
                             name_long='Categoria oggetti',name_plural='Categorie oggetti',
                             caption_field='nome', partition_casa_id='casa_id')
-        self.sysFields(tbl,hierarchical='nome',df=True,counter=True)
+        self.sysFields(tbl,hierarchical='nome',counter=True)
         tbl.column('nome',name_long='Nome')
         tbl.column('descrizione',name_long='Descrizione')
         tbl.column('casa_id',size='22',name_long='Casa').relation('casa.id',
