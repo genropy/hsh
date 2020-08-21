@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <GenRoBag>
-	<db dbname="kondo"/>
+	<db dbname="hsh"/>
 
 	<packages>
 		<gnrcore_sys pkgcode="gnrcore:sys"/>
