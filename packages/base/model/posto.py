@@ -4,10 +4,9 @@
 class Table(object):
     def config_db(self,pkg):
         tbl =  pkg.table('posto',pkey='id',name_long='Posto',
-                        name_plural='Posti',caption_field='nome',
+                        name_plural='Posti',caption_field='hierarchical_descrizione',
                         partition_casa_id='casa_id')
-        self.sysFields(tbl,hierarchical='nome',counter=True)
-        tbl.column('nome',name_long='Nome')
+        self.sysFields(tbl, hierarchical='descrizione', counter=True)
         tbl.column('descrizione',name_long='Descrizione')
         tbl.column('casa_id',size='22',name_long='Casa'
                     ).relation('casa.id',relation_name='posti', onDelete='cascade')

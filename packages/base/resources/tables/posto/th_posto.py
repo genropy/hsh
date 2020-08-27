@@ -8,13 +8,13 @@ class View(BaseComponent):
 
     def th_struct(self,struct):
         r = struct.view().rows()
-        r.fieldcell('nome')
+        r.fieldcell('hierarchical_descrizione')
 
     def th_order(self):
-        return 'nome'
+        return 'hierarchical_descrizione'
 
     def th_query(self):
-        return dict(column='nome', op='contains', val='')
+        return dict(column='hierarchical_descrizione', op='contains', val='')
 
 
 
@@ -24,12 +24,12 @@ class Form(BaseComponent):
         bc = form.center.borderContainer()
         top = bc.contentPane(region='top', datapath='.record', padding='5px')
         fb = top.formbuilder(cols=3, border_spacing='4px')
-        fb.field('nome' )
         fb.field('descrizione' )
         fb.field('posto_tipo_id' )
         center = bc.contentPane(region='center')
         th = center.dialogTableHandler(relation='@oggetti',addrow=False,delrow=False)
-        form.htree.relatedTableHandler(th,inherited=True)
+        form.htree.relatedTableHandler(th,inherited=True) #questa aggiunta mi permette di attivare drag&drop 
+                                                            #anche tra oggetti e albero gerarchico dei posti
 
 
     def th_options(self):

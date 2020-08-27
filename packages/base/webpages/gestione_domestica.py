@@ -18,7 +18,9 @@ class GnrCustomWebPage(object):
     def gestioneDomesticaTabs(self,tc):
         tc.contentPane(title='Gestione posti'
                             ).thFormHandler(table='base.posto', datapath='.posti',
-                                            default_casa_id=self.rootenv['casa_id'])
+                                            default_casa_id=self.rootenv['casa_id'],
+                                            viewResource='ViewFromPosto')
         tc.contentPane(title='Gestione oggetti').thFormHandler(table='base.oggetto_categoria',
                                             datapath='.oggetti', 
-                                            default_casa_id=self.rootenv['casa_id'])
+                                            default_casa_id=self.rootenv['casa_id'],
+                                            viewResource='ViewFromCategoria')
