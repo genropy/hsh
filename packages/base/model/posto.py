@@ -15,3 +15,11 @@ class Table(object):
 
     def trigger_onInserting(self, record):
         record['casa_id'] = record['casa_id'] or self.db.currentEnv['casa_id']
+
+    def aggiungiPosto(self,descrizione=None,**kwargs):
+        record = self.newrecord(descrizione=descrizione)
+        self.insert(record)
+        return record
+
+    def trigger_onInserting(self,record):
+        record['casa_id'] = record['casa_id'] or self.db.currentEnv.get('casa_id')

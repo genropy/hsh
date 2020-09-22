@@ -24,3 +24,8 @@ class GnrCustomWebPage(object):
                                             datapath='.oggetti', 
                                             default_casa_id=self.rootenv['casa_id'],
                                             viewResource='ViewFromCategoria')
+        th = tc.contentPane(title='Tutti gli oggetti').dialogTableHandler(
+            table='base.oggetto',view_store_onStart=True,
+            default_casa_id=self.rootenv['casa_id']
+        )
+        th.view.top.bar.replaceSlots('delrow','export,importer,5,delrow')

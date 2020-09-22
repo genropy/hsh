@@ -21,6 +21,9 @@ class View(BaseComponent):
     def th_query(self):
         return dict(column='nome', op='contains', val='')
 
+    def th_options(self):
+        return dict(uploadTags='user')
+
 class ViewFromCategoria(View):
 
     def th_struct(self,struct):
@@ -65,7 +68,8 @@ class Form(BaseComponent):
         fb.field('nome' )
         fb.field('anno_acquisto' )
         fb.field('quantita' )
-        fb.field('posto_id', hasDownArrow=True)
+        fb.field('categoria_id',tag='hdbselect',folderSelectable=True)
+        fb.field('posto_id', tag='hdbselect',folderSelectable=True)
         fb.checkboxtext(value='^.tag_id', table='base.oggetto_tag', 
                             columns='$nome', lbl='Tag: ', cols=2)
         

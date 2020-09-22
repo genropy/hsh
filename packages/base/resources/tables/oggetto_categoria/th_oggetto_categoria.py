@@ -34,7 +34,7 @@ class Form(BaseComponent):
         fb.field('descrizione' )
         fb.field('default_posto_id' )
         center = bc.contentPane(region='center')
-        th = center.dialogTableHandler(relation='@oggetti', addrow=False, delrow=False)
+        th = center.dialogTableHandler(relation='@oggetti', addrow=True, delrow=True)
         form.htree.relatedTableHandler(th,inherited=True) #questa aggiunta mi permette di attivare drag&drop 
                                                             #anche tra oggetti e albero gerarchico delle categorie
 
