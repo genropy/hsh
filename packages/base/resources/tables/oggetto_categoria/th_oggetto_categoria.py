@@ -10,8 +10,6 @@ class View(BaseComponent):
         r = struct.view().rows()
         r.fieldcell('nome')
         r.fieldcell('hierarchical_nome')
-        r.fieldcell('df_fbcolumns')
-        r.fieldcell('df_colswidth')
         r.fieldcell('descrizione')
         r.fieldcell('casa_id')
         r.fieldcell('default_posto_id')
