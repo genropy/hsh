@@ -18,13 +18,13 @@ class Table(object):
         casa_tbl = self.db.table('base.casa')
         casa_id = casa_tbl.newPkeyValue()
         nuova_casa = dict(id=casa_id, nome=record['prima_casa'])
-        self.db.table('base.casa').insert(nuova_casa)
+        casa_tbl.insert(nuova_casa)
         
         #...e la nuova utenza
         utenza_tbl = self.db.table('base.utenza')
-        utenza_id = utenza_tbl.newPkeyValue()
-        nuova_utenza = dict(id=utenza_id, user_id=record['id'], casa_id=nuova_casa['id'])
-        self.db.table('base.utenza').insert(nuova_utenza)
+        nuova_utenza = utenza_tbl.newrecord(user_id=record['id'], casa_id=nuova_casa['id'])
+        utenza_tbl.insert(nuova_utenza)
+        #per la nuova utenza usiamo l'equivalente newrecord invece del dict esclusivamente a scopo didattico
 
         self.db.commit()
 
