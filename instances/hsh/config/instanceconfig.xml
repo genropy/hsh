@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <GenRoBag>
 	<db dbname="hsh"/>	
-	<rms domain="hsh.erpy.org" customer_code='GENROPY' description='Home Sweet Home demo project for housing inventory management'/>
+	<rms domain="hsh.genropy.org" customer_code='GENROPY' description='Home Sweet Home demo project for housing inventory management'/>
 	<packages>
 		<gnrcore_sys pkgcode="gnrcore:sys"/>
 		<gnrcore_adm pkgcode="gnrcore:adm"/>
